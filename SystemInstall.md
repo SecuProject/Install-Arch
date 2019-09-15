@@ -72,9 +72,10 @@ Uncomment  in => /etc/locale.gen
     echo "LANG=en_GB.utf8" > /etc/environment
     cat /etc/vconsole.conf
     KEYMAP=be-latin1
+ ## Set HOSTNAME
     echo "HOSTNAME" > /etc/hostname
 
-
+## Enable DHCP
     systemctl enable dhcpcd
 
 
