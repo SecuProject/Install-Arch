@@ -73,3 +73,13 @@ Clone repo
 Install 
 
     makepkg -si
+    
+# System upgrade 
+    sudo pacman -Syu
+
+## sync the Pacman database
+    sudo pacman -Syy
+
+
+## Update pgpKey 
+    sudo pacman-key --refresh-keys
