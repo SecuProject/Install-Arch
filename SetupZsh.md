@@ -14,13 +14,10 @@ Check the current shell used
 ### zsh-safe-paste
 [safe-paste.plugin.zsh](https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/safe-paste/safe-paste.plugin.zsh)
 
-mkdir /usr/share/zsh-safe-paste
-nano /usr/share/zsh-safe-paste/safe-paste.plugin.zsh
-
-    ...
-  
-chmod 644 /usr/share/zsh-safe-paste/safe-paste.plugin.zsh
-
+    mkdir /usr/share/zsh-safe-paste
+    nano /usr/share/zsh-safe-paste/safe-paste.plugin.zsh
+        ...
+    chmod 644 /usr/share/zsh-safe-paste/safe-paste.plugin.zsh
 
 
 ## zshrc Config
