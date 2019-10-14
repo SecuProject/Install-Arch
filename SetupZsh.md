@@ -61,6 +61,10 @@ alias ls="ls --color=auto --human-readable"
 alias spm="sudo pacman"
 alias netstat=netstat --numeric-ports
 
+# Bindkey
+bindkey '^[[1;5C' emacs-forward-word        #control left
+bindkey '^[[1;5D' emacs-backward-word       #control right
+
 # Command history 
 HISTSIZE=1000
 SAVEHIST=1000
