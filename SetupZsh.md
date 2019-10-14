@@ -74,6 +74,10 @@ setopt extended_history # record timestamp of command in HISTFILE
 setopt hist_ignore_space # ignore commands that start with space
 setopt hist_verify # show command with history expansion to user before running it
 
+# Advanced Tab completion
+autoload -U compinit
+compinit
+
 ```
 
 ## Set as default 
