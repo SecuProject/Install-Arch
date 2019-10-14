@@ -57,9 +57,9 @@ export LS_COLORS
 
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
-alias ls="ls --color=auto --human-readable"
-alias spm="sudo pacman"
-alias netstat=netstat --numeric-ports
+alias ls='ls --color=auto --human-readable'
+alias spm='sudo pacman'
+alias netstat='netstat --numeric-ports'
 
 # Bindkey
 bindkey '^[[1;5C' emacs-forward-word        #control left
