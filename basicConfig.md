@@ -59,8 +59,8 @@ Start service
     systemctl start sshd
 
 ## Add user to sudo
-    usermod -g wheel bob
     useradd -m -g users -G wheel,storage,power -s /bin/bash bob
+    usermod -g wheel bob
     passwd bob
 
 
