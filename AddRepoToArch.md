@@ -13,24 +13,21 @@
 
  uncom => multilib 
 
-sudo nano /etc/pacman.conf
 
-    [archstrike]
-    Server = https://mirror.archstrike.org/$arch/$repo
 Update
 
-    spm -Syy
+    pacman -Syy
 ### Add key 
 
-    spm -S wget
+    pacman -S wget
     sudo pacman-key --init
     sudo dirmngr < /dev/null
     sudo pacman-key -r 9D5F1C051D146843CDA4858BDE64825E7CBC0D51
     sudo pacman-key --lsign-key 9D5F1C051D146843CDA4858BDE64825E7CBC0D51
 
 ### Install tools 
-    spm -S archstrike-keyring
-    spm -S archstrike-mirrorlist
+    pacman -S archstrike-keyring
+    pacman -S archstrike-mirrorlist
 
 
 sudo nano /etc/pacman.conf
@@ -40,7 +37,7 @@ sudo nano /etc/pacman.conf
 
 Update 
 
-    spm -Syy
+    pacman -Syy
 
 
 ### Check repo 
@@ -51,7 +48,7 @@ Update
 
 ## Add Black Arch repo 
 
-    spm -Syyu
+    pacman -Syyu
     curl -O https://blackarch.org/strap.sh
     chmod +x strap.sh
     sha1sum strap.sh
