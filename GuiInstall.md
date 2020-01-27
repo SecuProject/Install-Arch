@@ -67,6 +67,7 @@ nano /etc/X11/xorg.conf.d/20-keyboard.conf
 ## Thème 
 
     pacman -S arc-gtk-theme
+    pacman -S papirus-icon-theme
 
 ## Source
 
