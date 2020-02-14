@@ -9,13 +9,10 @@ Check the current shell used
     pacman -S zsh
 ## Install Plugins
 
-    pacman -S zsh-autosuggestions
-    pacman -S zsh-syntax-highlighting
+    sudo pacman -S zsh-autosuggestions
+    sudo pacman -S zsh-syntax-highlighting
 ### zsh-safe-paste
-[safe-paste.plugin.zsh](https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/safe-paste/safe-paste.plugin.zsh)
-
-    mkdir /usr/share/zsh/plugins/
-    git clone https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/safe-paste/safe-paste.plugin.zsh /usr/share/zsh/plugins/safe-paste.plugin.zsh
+    sudo git clone https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/safe-paste/safe-paste.plugin.zsh /usr/share/zsh/plugins/safe-paste.plugin.zsh
     chmod 644 /usr/share/zsh/plugins/safe-paste.plugin.zsh
 ### FZF
 Search for files:       `ctrl + t`
@@ -69,8 +66,10 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/safe-paste.plugin.zsh
 source /usr/share/zsh/plugins/DynamicTitle.zsh
 source /usr/share/zsh/plugins/bindkey.zsh
+source /usr/share/zsh/plugins/sudo.plugin.zsh
 #source $(dirname $(gem which colorls))/tab_complete.sh
 source /usr/lib/ruby/gems/2.7.0/gems/colorls-1.3.2/lib/tab_complete.sh
+
 
 RPROMPT='%D{[%K:%M:%S]}'
 
