@@ -15,10 +15,16 @@ Check the current shell used
 [safe-paste.plugin.zsh](https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/safe-paste/safe-paste.plugin.zsh)
 
     mkdir /usr/share/zsh/plugins/
-    nano /usr/share/zsh/plugins/safe-paste.plugin.zsh
-        ...
+    git clone https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/safe-paste/safe-paste.plugin.zsh /usr/share/zsh/plugins/safe-paste.plugin.zsh
     chmod 644 /usr/share/zsh/plugins/safe-paste.plugin.zsh
+### fzf
+Search for files:       ctrl + t
 
+Search for commands:    ctrl + r
+
+> Setup
+
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
 ### Colorls
 > yay
 
