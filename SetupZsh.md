@@ -19,7 +19,26 @@ Check the current shell used
         ...
     chmod 644 /usr/share/zsh/plugins/safe-paste.plugin.zsh
 
+### Colorls
+> yay
 
+    yay ruby-colorls
+
+> Script
+
+```bash
+#!/bin/bash
+sudo pacman -S ruby ruby-dev git
+cd /usr/share
+sudo git clone https://github.com/ryanoasis/nerd-fonts.git
+cd nerd-fonts
+./install.sh
+cd ..
+git clone https://github.com/athityakumar/colorls.git
+cd colorls
+gem install colorls
+```
+    
 ## zshrc Config
 
 nano ~/.zshrc
