@@ -88,6 +88,7 @@ export LS_COLORS
 # New alias
 
 ## For directory listing 
+alias tree='colorls -t'
 alias l='colorls --group-directories-first'
 alias ll='colorls --group-directories-first --long' # detailed 
 alias lh='colorls --group-directories-first --almost-all'
