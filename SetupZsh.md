@@ -17,14 +17,20 @@ Check the current shell used
     mkdir /usr/share/zsh/plugins/
     git clone https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/safe-paste/safe-paste.plugin.zsh /usr/share/zsh/plugins/safe-paste.plugin.zsh
     chmod 644 /usr/share/zsh/plugins/safe-paste.plugin.zsh
-### fzf
-Search for files:       ctrl + t
+### FZF
+Search for files:       `ctrl + t`
 
-Search for commands:    ctrl + r
+Search for commands:    `ctrl + r`
 
 > Setup
 
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+ ### sudo 
+
+To use: double tap on `esc`
+
+    sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -O /usr/share/zsh/plugins/sudo.plugin.zsh  
+    
 ### Colorls
 > yay
 
@@ -35,13 +41,22 @@ Search for commands:    ctrl + r
 ```bash
 #!/bin/bash
 sudo pacman -S ruby ruby-dev git
-cd /usr/share
-sudo git clone https://github.com/ryanoasis/nerd-fonts.git
-cd nerd-fonts
-./install.sh
-cd ..
-git clone https://github.com/athityakumar/colorls.git
-cd colorls
+
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip -O /tmp/Hack.zip
+unzip /tmp/Hack.zip -d /tmp/unzipHack
+
+Not use full ???
+
+    cd /usr/share
+    sudo git clone https://github.com/ryanoasis/nerd-fonts.git /usr/share/zsh
+    cd nerd-fonts
+    ./install.sh
+
+> Install colorls
+
+
+git clone https://github.com/athityakumar/colorls.git /tmp/colorls
+cd /tmp/colorls
 gem install colorls
 ```
     
