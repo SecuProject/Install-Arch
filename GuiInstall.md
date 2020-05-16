@@ -1,15 +1,16 @@
 # INSTALL INTERFACE 
 
+- [INSTALL INTERFACE](#install-interface)
 - [MATE](#mate)
   - [Window manager](#window-manager)
-  - [(Desktop environment)](#desktop-environment)
+  - [Desktop environment](#desktop-environment)
   - [Display manager](#display-manager)
   - [to test](#to-test)
 - [Budgie (if not MATE)](#budgie-if-not-mate)
   - [Window manager](#window-manager-1)
   - [(Desktop environment)](#desktop-environment-1)
   - [GNOME display manager](#gnome-display-manager)
-  - [Thème](#th%c3%a8me)
+  - [Theme](#theme)
   - [Source](#source)
 
 
@@ -17,7 +18,7 @@
 
 ## Window manager
     pacman -S xorg xorg-server
-## (Desktop environment)
+## Desktop environment
     pacman -S mate mate-extra
 ## Display manager
 Install 
@@ -64,7 +65,7 @@ nano /etc/X11/xorg.conf.d/20-keyboard.conf
     reboot
 
 
-## Thème 
+## Theme 
 
     pacman -S arc-gtk-theme
     pacman -S papirus-icon-theme
