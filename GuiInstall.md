@@ -24,6 +24,28 @@
 Install 
 
     pacman -S lightdm
+    
+For the greeter menu there are two possibilities:
+- lightdm-gtk
+- lightdm-webkit
+
+### lightdm-webkit
+    pacman -S lightdm-webkit2-greeter
+    pacman -S lightdm-webkit-theme-litarvan
+    
+nano /etc/lightdm/lightdm-webkit2-greeter.conf
+    
+    [greeter]
+    debug_mode          = false
+    detect_theme_errors = true
+    screensaver_timeout = 300
+    secure_mode         = true
+    time_format         = LT
+    time_language       = auto
+    webkit_theme        = litarvan
+    
+### lightdm-gtk
+    
     pacman -S lightdm-gtk-greeter
     pacman -S lightdm-gtk-greeter-settings
 
