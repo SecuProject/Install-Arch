@@ -1,27 +1,36 @@
 # INSTALL INTERFACE 
 
 - [INSTALL INTERFACE](#install-interface)
-- [MATE](#mate)
   - [Window manager](#window-manager)
   - [Desktop environment](#desktop-environment)
   - [Display manager](#display-manager)
-  - [to test](#to-test)
-- [Budgie (if not MATE)](#budgie-if-not-mate)
-  - [Window manager](#window-manager-1)
-  - [(Desktop environment)](#desktop-environment-1)
-  - [GNOME display manager](#gnome-display-manager)
-  - [Theme](#theme)
+    - [lightdm-webkit](#lightdm-webkit)
+    - [lightdm-gtk](#lightdm-gtk)
+  - [Cursor](#cursor)
   - [Source](#source)
 
 
-# MATE
-
 ## Window manager
     pacman -S xorg xorg-server
+
+nano /etc/X11/xorg.conf.d/20-keyboard.conf
+
+    Section "InputClass"
+        Identifier "keyboard"
+        MatchIsKeyboard "yes"
+        Option "XkbLayout" "be"
+        Option "XkbVariant" "nodeadkeys"
+    EndSection
 ## Desktop environment
     pacman -S mate mate-extra
+
+> Theme 
+
+    pacman -S arc-gtk-theme
+    pacman -S papirus-icon-theme
+
 ## Display manager
-Install 
+Install lightdm
 
     pacman -S lightdm
     
@@ -60,38 +69,18 @@ nano /etc/lightdm/lightdm-gtk-greeter.conf
     a11y-states = +keyboard;~reader
     position = 25%,center 50%,center
 
-nano /etc/X11/xorg.conf.d/20-keyboard.conf
 
-    Section "InputClass"
-        Identifier "keyboard"
-        MatchIsKeyboard "yes"
-        Option "XkbLayout" "be"
-        Option "XkbVariant" "nodeadkeys"
-    EndSection
-## to test
+> To test the config
+> 
     dm-tool switch-to-greeter
     systemctl enable lightdm.service
 
-# Budgie (if not MATE)
-## Window manager
-    pacman -S xorg xorg-server
-## (Desktop environment)
-    pacman -S budgie-desktop gnome
-## GNOME display manager 
-[Link Install Display Managers](https://wiki.manjaro.org/index.php/Install_Display_Managers)
 
-    pacman -S gdm
+## Cursor
 
-    systemctl start gdm
-    systemctl enable gdm
-    reboot
+    https://www.mate-look.org/p/1197398/
 
 
-## Theme 
+## Source 
 
-    pacman -S arc-gtk-theme
-    pacman -S papirus-icon-theme
-
-## Source
-
-https://www.mate-look.org/p/1197398/
+    https://subscription.packtpub.com/book/networking_and_servers/9781849519724/1/ch01lvl1sec17/configuring-gui-using-xorg-should-know

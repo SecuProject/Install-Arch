@@ -1,20 +1,25 @@
-<h1> Basic Config </h1>
+# Basic Config </h1>
 
-- [Install vmware tools](#install-vmware-tools)
-  - [Service responsible for the Virtual Machine status report](#service-responsible-for-the-virtual-machine-status-report)
-  - [Filesystem utility. Enables drag & drop functionality between host and guest through FUSE](#filesystem-utility-enables-drag--drop-functionality-between-host-and-guest-through-fuse)
-- [For xorg](#for-xorg)
-- [SSH](#ssh)
-- [Add user to sudo](#add-user-to-sudo)
-- [Tools](#tools)
-- [Update your system](#update-your-system)
-  - [Update System](#update-system)
-- [Iptables](#iptables)
-  - [Set policy to DROP](#set-policy-to-drop)
-  - [Set DNS server](#set-dns-server)
-  - [Set Rules](#set-rules)
-  - [Enable Logs](#enable-logs)
-- [sshguard](#sshguard)
+- [Basic Config </h1>](#basic-config-h1)
+  - [Install vmware tools](#install-vmware-tools)
+  - [For xorg](#for-xorg)
+  - [SSH](#ssh)
+  - [Add user to sudo](#add-user-to-sudo)
+  - [Tools](#tools)
+  - [Update your system](#update-your-system)
+    - [Update System](#update-system)
+  - [Check for system error](#check-for-system-error)
+    - [Initial ramdisk](#initial-ramdisk)
+    - [View system error](#view-system-error)
+- [Optional](#optional)
+  - [Iptables](#iptables)
+    - [Set policy to DROP](#set-policy-to-drop)
+    - [Set DNS server](#set-dns-server)
+    - [Set Rules](#set-rules)
+    - [Enable Logs](#enable-logs)
+  - [sshguard](#sshguard)
+
+
 
 
 ## Install vmware tools 
@@ -31,12 +36,18 @@
 <!--xf86-input-vmmouse, xf86-video-vmware, and mesa.
 -->
 
-    # open-vm-tools needs this
+open-vm-tools needs this
+
     cat /proc/version > /etc/arch-release 
 
-### Service responsible for the Virtual Machine status report
+> Service responsible for the Virtual Machine status report
+> 
     systemctl enable vmtoolsd
-### Filesystem utility. Enables drag & drop functionality between host and guest through FUSE
+
+> Filesystem utility. 
+
+Enables drag & drop functionality between host and guest through FUSE
+
     systemctl enable vmware-vmblock-fuse
 
     systemctl start vmtoolsd
@@ -73,10 +84,7 @@ nano /etc/sudoers
     pacman -S net-tools
     pacman -S dnsutils
     pacman -S firefox
-    spm -S xxd
-    spm -S openssl 
-
-
+    pacman -S openssl 
 
 ## Update your system
 [Link to Mirrorlist](https://www.archlinux.org/mirrorlist/)
@@ -94,6 +102,33 @@ nano /etc/pacman.d/mirrorlist
 ### Update System
     pacman -Syu
 
+
+## Check for system error 
+
+### Initial ramdisk
+
+> Test
+> 
+mkinitcpio -p linux
+
+    if module are missing 
+
+> Install module
+> 
+    git clone https://aur.archlinux.org/aic94xx-firmware.git
+    cd aic94xx-firmware
+    makepkg -sri
+
+    git clone https://aur.archlinux.org/wd719x-firmware.git
+    cd wd719x-firmware
+    makepkg -sri
+
+### View system error
+
+    sudo systemctl --failed 
+    sudo journalctl -p 3 -xb
+
+# Optional 
 
 ## Iptables 
 

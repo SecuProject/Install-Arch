@@ -3,9 +3,9 @@ Installation guide - Arch Linux
 
 1. [System Installation](https://github.com/SecuProject/Install-Arch/blob/master/SystemInstall.md)
 2. [Gui Installation](https://github.com/SecuProject/Install-Arch/blob/master/GuiInstall.md)
-   1. Window manager
-   2. Desktop environment
-   3. Display manager
+   1. Window manager - xorg 
+   2. Desktop environment - lightdm
+   3. Display manager - MATE
 3. [Basic Config](https://github.com/SecuProject/Install-Arch/blob/master/basicConfig.md)
    1. Install vmware tools
    2. Setup SSH

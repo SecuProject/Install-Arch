@@ -1,6 +1,24 @@
 # Customization
 
-## Install grub theme - Arch-Silence
+## Grub Settings 
+
+There are possibilities:
+- Remove GRUB Menu 
+- Install grub theme
+
+### Remove GRUB Menu 
+
+nano /etc/default/grub
+
+    GRUB_DEFAULT=0
+    GRUB_TIMEOUT=0
+    GRUB_DISTRIBUTOR="Arch"
+    GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=3 rd.systemd.show_status=auto rd.udev.log_priority=3"
+    GRUB_CMDLINE_LINUX=""
+
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+### Install grub theme - Arch-Silence
 
 > Download 
 
@@ -40,7 +58,7 @@ yay -S conky
 
 mkdir -p ~/.config/conky
 
-wget https://github.com/SecuProject/Install-Arch/blob/master/conky.conf ~/.config/conky/conky.conf
+    wget https://github.com/SecuProject/Install-Arch/blob/master/conky.conf ~/.config/conky/conky.conf
 
 > Run of test
 
@@ -59,3 +77,16 @@ nano /home/bob/.config/conky/startup.sh
 chmod 700 /home/bob/.config/conky/startup.sh
 
 sudo ln -s /home/bob/.config/conky/startup.sh /etc/profile.d/conky.sh
+
+## Suppress boot message 
+
+sudo nano /etc/mkinitcpio.conf
+
+    HOOKS=(base udev block filesystems keyboard)
+
+sudo mkinitcpio -p /etc/mkinitcpio.d/linux.preset
+
+## Test boot speed 
+
+    systemd-analyze
+    systemd-analyze blame
