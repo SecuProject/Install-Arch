@@ -82,6 +82,7 @@ sudo ln -s /home/bob/.config/conky/startup.sh /etc/profile.d/conky.sh
 
 sudo nano /etc/mkinitcpio.conf
 
+    MODULES=(vmxnet3 vmw_vmci vmw_pvscsi vmw_balloon)
     HOOKS=(base udev block filesystems keyboard)
 
 sudo mkinitcpio -p /etc/mkinitcpio.d/linux.preset
