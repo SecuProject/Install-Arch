@@ -13,7 +13,38 @@
 ## Window manager
     pacman -S xorg xorg-server
 
+nano /etc/X11/xorg.conf.d/10-monitor.conf
+
+    Section "Monitor"
+        Identifier "DisplayPort-0"
+        Modeline "1920x1080X"  325.08  1920 1944 1976 2056  1080 1083 1088 1098 +hsync +vsync
+        Option "PreferredMode" "1920x1080X"
+    EndSection
+
+    Section "Screen"
+        Identifier "Screen0"
+        Monitor "DisplayPort-0"
+        DefaultDepth 24
+        SubSection "Display"
+            Modes "1920x1080X"
+        EndSubSection
+    EndSection
+
 nano /etc/X11/xorg.conf.d/20-keyboard.conf
+
+    Section "InputDevice"
+        Identifier     "Mouse0"
+        Driver         "mouse"
+        Option         "Protocol" "auto"
+        Option         "Device" "/dev/psaux"
+        Option         "Emulate3Buttons" "no"
+        Option         "ZAxisMapping" "4 5"
+    EndSection
+
+    Section "InputDevice"
+        Identifier     "Keyboard0"
+        Driver         "kbd"
+    EndSection
 
     Section "InputClass"
         Identifier "keyboard"
@@ -21,6 +52,7 @@ nano /etc/X11/xorg.conf.d/20-keyboard.conf
         Option "XkbLayout" "be"
         Option "XkbVariant" "nodeadkeys"
     EndSection
+
 ## Desktop environment
     pacman -S mate mate-extra
 
@@ -52,7 +84,11 @@ nano /etc/lightdm/lightdm-webkit2-greeter.conf
     time_format         = LT
     time_language       = auto
     webkit_theme        = litarvan
-    
+
+nano /etc/lightdm/lightdm.conf
+
+    greeter-session=lightdm-webkit2-greeter
+
 ### lightdm-gtk
     
     pacman -S lightdm-gtk-greeter
@@ -69,6 +105,9 @@ nano /etc/lightdm/lightdm-gtk-greeter.conf
     a11y-states = +keyboard;~reader
     position = 25%,center 50%,center
 
+nano /etc/lightdm/lightdm.conf
+
+    greeter-session=lightdm-gtk-greeter
 
 > To test the config
 > 
