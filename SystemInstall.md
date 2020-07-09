@@ -1,19 +1,42 @@
 # System Install
 
-- [Loadkeys](#loadkeys)
-- [Partition the Hard Drive](#partition-the-hard-drive)
-  - [Create Filesystem](#create-filesystem)
-- [Mount the Filesystem](#mount-the-filesystem)
-- [Mount the boot](#mount-the-boot)
-  - [Create Swap Space](#create-swap-space)
-- [Mount Swap Space](#mount-swap-space)
-- [Install the Base System](#install-the-base-system)
-- [Generate the fstab File](#generate-the-fstab-file)
-- [Chroot into Arch Linux](#chroot-into-arch-linux)
-- [Set the Time Zone](#set-the-time-zone)
-- [Generate Locale File](#generate-locale-file)
-- [Install a Boot Loader](#install-a-boot-loader)
-- [Reboot](#reboot)
+- [System Install](#system-install)
+  - [System Checks](#system-checks)
+    - [Check internet connection](#check-internet-connection)
+    - [Verify the boot mode](#verify-the-boot-mode)
+  - [Loadkeys](#loadkeys)
+  - [Partition the Hard Drive](#partition-the-hard-drive)
+    - [Structure](#structure)
+    - [Command](#command)
+    - [Create Filesystem](#create-filesystem)
+  - [Mount the Filesystem](#mount-the-filesystem)
+    - [Create Swap Space](#create-swap-space)
+  - [Mount Swap Space](#mount-swap-space)
+  - [Install the Base System](#install-the-base-system)
+    - [enable Arch Multilib](#enable-arch-multilib)
+    - [Install](#install)
+  - [Generate the fstab File](#generate-the-fstab-file)
+  - [Chroot into Arch Linux](#chroot-into-arch-linux)
+  - [Set the Time Zone](#set-the-time-zone)
+  - [Generate Locale File](#generate-locale-file)
+  - [Set HOSTNAME](#set-hostname)
+  - [Enable DHCP](#enable-dhcp)
+  - [Mount the boot](#mount-the-boot)
+  - [Install a Boot Loader](#install-a-boot-loader)
+  - [Set root password](#set-root-password)
+  - [Reboot](#reboot)
+
+
+## System Checks 
+
+### Check internet connection 
+
+    ifconfig
+    ping -c2 google.com
+
+### Verify the boot mode
+
+    ls /sys/firmware/efi/efivars
 
 ## Loadkeys
 
@@ -22,23 +45,38 @@
 
 ## Partition the Hard Drive
 
+### Structure 
+|Mount point|Partition|Partition type|Suggested size|
+|-|-|-|-|
+|/mnt/boot or /mnt/efi|/dev/sdX1|EFI system partition|260–512 MiB|
+|[SWAP]|/dev/sdX2|Linux swap|2GB|
+|/mnt|/dev/sdX3|Linux x86-64 root (/)|Remainder of the device|
+
+
+### Command 
+
+> List disk 
+> 
+    lsblk
+
     fdisk -l
+
+> Edit partition 
+> 
     cfdisk /dev/sda
-    -> dos
-    -> sda1 boot 512M
-    -> sda2 swap 2G
-    -> sda3
+    -> gpt
+    -> sda1 EFI System  512M
+    -> sda2 swap        2G
+    -> sda3 Linux FS
     fdisk -l
 
 ### Create Filesystem
+    mkfs.fat -F32 /dev/sda1
     mkfs.ext4 /dev/sda3
-    mkfs.ext4 /dev/sda1
+    
 
 ## Mount the Filesystem
     mount /dev/sda3 /mnt
-## Mount the boot
-    mkdir /mnt/boot
-    mount /dev/sda1 /mnt/boot
 
 ### Create Swap Space
     mkswap /dev/sda2
@@ -48,7 +86,15 @@
 
 
 ## Install the Base System
-    pacstrap /mnt base base-devel
+
+### enable Arch Multilib
+
+    [multilib]
+    Include = /etc/pacman.d/mirrorlist
+
+### Install
+
+    pacstrap /mnt base base-devel linux linux-firmware nano dhcpcd
 
 
 ## Generate the fstab File
@@ -78,12 +124,22 @@ Uncomment  in => /etc/locale.gen
 ## Enable DHCP
     systemctl enable dhcpcd
 
+## Mount the boot
+    mkdir /boot/efi
+    mount /dev/sda1 /boot/efi
 
 ## Install a Boot Loader
-    pacman -S grub os-prober
-    grub-install /dev/sda
+
+    pacman -S grub efibootmgr dosfstools os-prober mtools
+    grub-install --target=x86_64-efi  --bootloader-id=grub_uefi --efi-directory=/boot/efi  --recheck
     grub-mkconfig -o /boot/grub/grub.cfg
+
+## Set root password 
 
     passwd
 
 ## Reboot
+
+    exit 
+    umount -a
+    poweroff

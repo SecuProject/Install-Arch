@@ -18,7 +18,7 @@ nano /etc/default/grub
 
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-### Install grub theme - Arch-Silence
+### Install grub theme - Arch-Silence (Usefull ???)
 
 > Download 
 
@@ -58,7 +58,7 @@ yay -S conky
 
 mkdir -p ~/.config/conky
 
-    wget https://github.com/SecuProject/Install-Arch/blob/master/conky.conf ~/.config/conky/conky.conf
+    wget https://raw.githubusercontent.com/SecuProject/Install-Arch/master/conky.conf -O ~/.config/conky/conky.conf
 
 > Run of test
 

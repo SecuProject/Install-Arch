@@ -5,9 +5,9 @@
   - [For xorg](#for-xorg)
   - [SSH](#ssh)
   - [Add user to sudo](#add-user-to-sudo)
-  - [Tools](#tools)
   - [Update your system](#update-your-system)
     - [Update System](#update-system)
+  - [Tools](#tools)
   - [Check for system error](#check-for-system-error)
     - [Initial ramdisk](#initial-ramdisk)
     - [View system error](#view-system-error)
@@ -70,21 +70,16 @@ Start service
     systemctl start sshd
 
 ## Add user to sudo
+    pacman -S sudo
+
     useradd -m -g users -G wheel,storage,power -s /bin/bash bob
     usermod -g wheel bob
     passwd bob
-
+    
 
 nano /etc/sudoers
 
     %wheel ALL=(ALL) ALL
-
-## Tools
-
-    pacman -S net-tools
-    pacman -S dnsutils
-    pacman -S firefox
-    pacman -S openssl 
 
 ## Update your system
 [Link to Mirrorlist](https://www.archlinux.org/mirrorlist/)
@@ -101,6 +96,13 @@ nano /etc/pacman.d/mirrorlist
 
 ### Update System
     pacman -Syu
+
+
+## Tools
+
+    pacman -S net-tools
+    pacman -S dnsutils
+    pacman -S firefox
 
 
 ## Check for system error 
