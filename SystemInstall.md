@@ -2,6 +2,7 @@
 
 - [System Install](#system-install)
   - [System Checks](#system-checks)
+    - [IF vmware](#if-vmware)
     - [Check internet connection](#check-internet-connection)
     - [Verify the boot mode](#verify-the-boot-mode)
   - [Loadkeys](#loadkeys)
@@ -28,6 +29,11 @@
 
 
 ## System Checks 
+
+### IF vmware 
+
+- Enable UEFI (Option>Advanced)
+- Enable Accelerate 3D for multi screen (Hardware>Display)
 
 ### Check internet connection 
 
