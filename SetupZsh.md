@@ -11,6 +11,9 @@ Check the current shell used
 
     yay -S zsh-autosuggestions
     yay -S zsh-syntax-highlighting
+    yay -S command-not-found
+    yay -S cht.sh
+    yay -S rlwrap
 ### zsh-safe-paste
     sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/safe-paste/safe-paste.plugin.zsh -O /usr/share/zsh/plugins/safe-paste.plugin.zsh
     sudo chmod 644 /usr/share/zsh/plugins/safe-paste.plugin.zsh
@@ -52,10 +55,6 @@ To use: double tap on `esc`
     curl -L 'https://github.com/ryanoasis/nerd-fonts/blob/master/src/glyphs/FontAwesome.otf?raw=true' --output FontAwesome.otf
 
 
-
-
-     
-
 ## zshrc Config
 
 nano ~/.zshrc
@@ -89,6 +88,8 @@ case $USER in
     ;;
 esac
 
+[[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
+
 
 # For directory listing 
 LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
@@ -113,10 +114,15 @@ alias evil-winrm='evil-winrm -s "/home/bob/CTF/HTB/WindowsTools/powershell"'
 alias powershell='pwsh'
 alias spm='sudo pacman'
 alias netstat='netstat --numeric-ports'
+alias helpme='cht.sh'
+alias ncl='rlwrap -r -f . nc -nv'
+
+alias fixpacman="sudo rm /var/lib/pacman/db.lck"
+alias upd='sudo reflector --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syu'
 
 # Command history
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=50000
+SAVEHIST=10000
 HISTFILE=~/.history
 
 setopt extended_history         # record timestamp of command in HISTFILE
@@ -125,7 +131,7 @@ setopt hist_verify              # show command with history expansion to user be
 setopt hist_ignore_all_dups     # prevent history from recording duplicated entries
 
 # Command correction
-setopt correctall
+setopt correct
 
 # Advanced Tab completion
 autoload -U compinit
