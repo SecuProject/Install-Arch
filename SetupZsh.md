@@ -122,6 +122,7 @@ alias fixpacman="sudo rm /var/lib/pacman/db.lck"
 alias upd='sudo reflector --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syu'
 
 ## User-Agent
+USER_AGENT='Mozilla/5.0 (Windows NT x.y; Win64; x64; rv:10.0) Gecko/20100101 Firefox/10.0'
 alias nmap='nmap --script-args http.useragent="$USER_AGENT"'
 alias nikto='nikto -useragent "$USER_AGENT"'
 alias gobuster='gobuster -a "$USER_AGENT"'
@@ -129,6 +130,7 @@ alias feroxbuster='feroxbuster -a "$USER_AGENT"'
 alias cmsmap='cmsmap -a "$USER_AGENT"'
 alias wpscan='wpscan --ua "$USER_AGENT"'
 alias sqlmap='sqlmap  --random-agent'
+alias whatweb='whatweb -U $USER_AGENT'
 
 ## Path
 seclists=/usr/share/seclists
