@@ -66,8 +66,7 @@ source /usr/share/zsh/plugins/DynamicTitle.zsh
 source /usr/share/zsh/plugins/bindkey.zsh
 source /usr/share/zsh/plugins/sudo.plugin.zsh
 source /usr/share/zsh/plugins/prompt.zsh
-#source $(dirname $(gem which colorls))/tab_complete.sh
-#source /usr/lib/ruby/gems/2.7.0/gems/colorls-1.3.2/lib/tab_complete.sh
+source $(dirname $(gem which colorls))/tab_complete.sh
 source ~/.fzf.zsh
 
 RPROMPT='%D{[%K:%M:%S]}'
@@ -95,7 +94,9 @@ esac
 LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
 export LS_COLORS
 
-# For directory listing 
+
+# Alias
+## For directory listing 
 alias l='colorls --group-directories-first'
 alias ll='colorls --group-directories-first --long' # detailed 
 alias lh='colorls --group-directories-first --almost-all'
@@ -103,11 +104,11 @@ alias llh='colorls --group-directories-first --almost-all --long' # detailed
 alias ls='ls --color=auto --human-readable'
 alias tree='colorls --tree'
 
-# Grep colours
+## Grep colours
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 
-# Custom command
+## Custom command
 alias smbmap='smbmap --no-banner'
 alias gobusterd='gobuster dir -x .php,.html -e -s 200,204,301,302,307'
 alias evil-winrm='evil-winrm -s "/home/bob/CTF/HTB/WindowsTools/powershell"'
@@ -120,6 +121,18 @@ alias ncl='rlwrap -r -f . nc -nv'
 alias fixpacman="sudo rm /var/lib/pacman/db.lck"
 alias upd='sudo reflector --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syu'
 
+## User-Agent
+alias nmap='nmap --script-args http.useragent="$USER_AGENT"'
+alias nikto='nikto -useragent "$USER_AGENT"'
+alias gobuster='gobuster -a "$USER_AGENT"'
+alias feroxbuster='feroxbuster -a "$USER_AGENT"'
+alias cmsmap='cmsmap -a "$USER_AGENT"'
+alias wpscan='wpscan --ua "$USER_AGENT"'
+alias sqlmap='sqlmap  --random-agent'
+
+## Path
+seclists=/usr/share/seclists
+
 # Command history
 HISTSIZE=50000
 SAVEHIST=10000
@@ -129,9 +142,13 @@ setopt extended_history         # record timestamp of command in HISTFILE
 setopt hist_ignore_space        # ignore commands that start with space
 setopt hist_verify              # show command with history expansion to user before running it
 setopt hist_ignore_all_dups     # prevent history from recording duplicated entries
+setopt incappendhistory         # Immediately append to the history file, not just when a term is killed
+setopt sharehistory             # Share history across terminals
+
 
 # Command correction
-setopt correct
+setopt correct                  # Command correction
+setopt autocd autopushd         # No need for CD
 
 # Advanced Tab completion
 autoload -U compinit
